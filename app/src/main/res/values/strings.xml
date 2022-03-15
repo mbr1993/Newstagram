@@ -1,0 +1,13 @@
+<resources>
+    <string name="app_name">Newstagram</string>
+    <string name="api_key">f64e5b340d954f85bdec4e8ad49e15fc</string>
+    <string name="headlines">HeadLines</string>
+    <string name="search">Search topics on sources</string>
+    <string name="latest">Latest</string>
+    <string name="finance">Finance</string>
+    <string name="tech">Tech</string>
+    <string name="business">Business</string>
+    <string name="news_theme">House Democrats are considering a bill to ban Facebook from the finance industry</string>
+    <string name="the_verge">The Verge</string>
+    <string name="_28_minutes_ago">28 minutes ago</string>
+</resources>
