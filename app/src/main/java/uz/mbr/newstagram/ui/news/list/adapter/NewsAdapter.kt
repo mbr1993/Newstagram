@@ -8,7 +8,8 @@ import uz.mbr.newstagram.databinding.ViewHolderBigNewsBinding
 import uz.mbr.newstagram.databinding.ViewHolderSmallNewsBinding
 
 class NewsAdapter(
-    private val newsOnClick: (articleResponse: ArticleResponse) -> Unit
+    private val newsOnClick: (articleResponse: ArticleResponse) -> Unit,
+    private val imageOnClick: (position: Int) -> Unit
 ) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     var items: MutableList<ArticleResponse> = mutableListOf()
@@ -40,8 +41,8 @@ class NewsAdapter(
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
         when (holder) {
-            is SmallNewsViewHolder -> holder.bindData(items[position])
-            is BigNewsViewHolder -> holder.bindData(items[position])
+            is SmallNewsViewHolder -> holder.bindData(items[position], position)
+            is BigNewsViewHolder -> holder.bindData(items[position], position)
         }
     }
 
@@ -68,13 +69,14 @@ class NewsAdapter(
         private val binding: ViewHolderBigNewsBinding
     ) : RecyclerView.ViewHolder(binding.root) {
 
-        fun bindData(data: ArticleResponse) {
+        fun bindData(data: ArticleResponse, position: Int) {
             with(binding) {
                 root.setOnClickListener { newsOnClick.invoke(data) }
+                newsImageSdv.setOnClickListener { imageOnClick.invoke(position) }
                 newsImageSdv.setImageURI(data.imageUrl)
                 titleTv.text = data.title
                 dateTv.text = data.publishedAt ?: ""
-                sourceTv.text = data.source.name
+                sourceTv.text = data.source?.name
             }
         }
     }
@@ -83,13 +85,14 @@ class NewsAdapter(
         private val binding: ViewHolderSmallNewsBinding
     ) : RecyclerView.ViewHolder(binding.root) {
 
-        fun bindData(data: ArticleResponse) {
+        fun bindData(data: ArticleResponse, position: Int) {
             with(binding) {
                 root.setOnClickListener { newsOnClick.invoke(data) }
+                newsImageSdv.setOnClickListener { imageOnClick.invoke(position) }
                 newsImageSdv.setImageURI(data.imageUrl)
                 titleTv.text = data.title
                 dateTv.text = data.publishedAt ?: ""
-                sourceTv.text = data.source.name
+                sourceTv.text = data.source?.name
             }
         }
     }

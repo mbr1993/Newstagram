@@ -4,18 +4,22 @@ import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.LinearLayoutManager.*
-import uz.mbr.newstagram.ui.news.list.adapter.NewsAdapter
+import androidx.recyclerview.widget.LinearLayoutManager.HORIZONTAL
+import androidx.recyclerview.widget.LinearLayoutManager.VERTICAL
 import retrofit2.*
 import retrofit2.converter.gson.GsonConverterFactory
 import timber.log.Timber
 import uz.mbr.newstagram.BuildConfig.BASE_URL
 import uz.mbr.newstagram.data.model.news.ArticleListResponse
 import uz.mbr.newstagram.data.model.news.ArticleResponse
+import uz.mbr.newstagram.data.model.news.SourceResponse
 import uz.mbr.newstagram.data.source.ArticleRestService
 import uz.mbr.newstagram.databinding.ActivityNewsListBinding
 import uz.mbr.newstagram.ui.news.detail.NewsDetailActivity
 import uz.mbr.newstagram.ui.news.list.adapter.CategoryAdapter
+import uz.mbr.newstagram.ui.news.list.adapter.NewsAdapter
+import uz.mbr.newstagram.ui.news.pager.NewsPagerActivity
+import java.util.ArrayList
 
 class NewsListActivity : AppCompatActivity() {
 
@@ -26,8 +30,11 @@ class NewsListActivity : AppCompatActivity() {
     private val articleRestService: ArticleRestService = retrofit.create()
     private var callNewsList: Call<ArticleListResponse>? = null
 
-    private val newsAdapter = NewsAdapter { openNewsDetail(it) }
-    private val categoryAdapter = CategoryAdapter {  }
+    private val newsAdapter = NewsAdapter(
+        newsOnClick = { openNewsDetail(it) },
+        imageOnClick = { openNewsPager(it) }
+    )
+    private val categoryAdapter = CategoryAdapter { }
 
     private val binding by lazy { ActivityNewsListBinding.inflate(layoutInflater) }
 
@@ -66,8 +73,8 @@ class NewsListActivity : AppCompatActivity() {
             ) {
                 Timber.d(response.toString())
 
-                val articles = response.body()?.articles?: listOf()
-                val categories = articles.map { it.source }
+                val articles = response.body()?.articles ?: listOf()
+                val categories: List<SourceResponse> = articles.map { it.source }.filterNotNull()
                 categoryAdapter.setData(categories)
                 newsAdapter.setData(articles)
             }
@@ -81,6 +88,17 @@ class NewsListActivity : AppCompatActivity() {
     private fun openNewsDetail(articleResponse: ArticleResponse) {
         val intent = Intent(this, NewsDetailActivity::class.java)
         intent.putExtra("article", articleResponse)
+        startActivity(intent)
+    }
+
+    private fun openNewsPager(position: Int) {
+        val intent = Intent(this, NewsPagerActivity::class.java)
+        val articleArrayList: ArrayList<ArticleResponse> = arrayListOf()
+        val articles = newsAdapter.items
+        articles.forEach { articleArrayList.add(it) }
+
+        intent.putParcelableArrayListExtra("articles", articleArrayList)
+        intent.putExtra("current_position", position)
         startActivity(intent)
     }
 }

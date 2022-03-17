@@ -19,13 +19,16 @@ class NewsDetailActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         val articleResponse: ArticleResponse =
-            intent.getSerializableExtra("article") as ArticleResponse
+            intent.getParcelableExtra<ArticleResponse>("article") as ArticleResponse
 
         with(binding) {
+            backIv.setOnClickListener { finish() }
+            bookmarkIv.setOnClickListener {  }
+
             titleTv.text = articleResponse.title
             newsImageSdv.setImageURI(articleResponse.imageUrl)
             authorTv.text = articleResponse.author
-            sourceTv.text = articleResponse.source.name
+            sourceTv.text = articleResponse.source?.name
             contentTv.text = articleResponse.content
             dateTv.text = articleResponse.publishedAt
         }
