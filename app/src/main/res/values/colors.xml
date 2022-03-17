@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="purple_200">#FFBB86FC</color>
-    <color name="color_primary">#E4E9EC</color>
-    <color name="color_primary_dark">#FFFFFF</color>
+
+    <color name="color_primary">#1B1D25</color>
+    <color name="color_primary_dark">#1B1D25</color>
     <color name="color_secondary">#FF03DAC5</color>
     <color name="color_secondary_dark">#FF018786</color>
     <color name="black">#FF000000</color>
@@ -10,9 +10,9 @@
     <color name="gray">#EBEBEB</color>
     <color name="transparent">#7E000000</color>
 
-    <color name="app_text_color_primary">#111111</color>
-    <color name="app_text_color_secondary">#8A939A</color>
-    <color name="app_text_color_tertiary">#D1D5D9</color>
-    <color name="app_text_color_primary_inverse">#FFFFFF</color>
-    <color name="app_text_color_tertiary_inverse">#99FFFFFF</color>
+    <color name="app_text_color_primary">#FFFFFF</color>
+    <color name="app_text_color_secondary">#A6A6A6</color>
+    <color name="app_text_color_tertiary">#A6A6A6</color>
+    <color name="app_text_color_primary_inverse">#111111</color>
+    <color name="app_text_color_tertiary_inverse">#404040</color>
 </resources>

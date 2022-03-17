@@ -1,12 +1,13 @@
-package uz.mbr.newstagram.data.model
+package uz.mbr.newstagram.data.model.news
 
 import com.google.gson.annotations.SerializedName
+import uz.mbr.newstagram.data.model.news.SourceResponse
 import java.io.Serializable
 
 data class ArticleResponse(
 
     @SerializedName("author")
-    val author: String,
+    val author: String?,
 
     @SerializedName("content")
     val content: String?,
@@ -21,12 +22,11 @@ data class ArticleResponse(
     val source: SourceResponse,
 
     @SerializedName("title")
-    val title: String?,
+    val title: String,
 
     @SerializedName("url")
-    val url: String?,
+    val url: String,
 
-    @SerializedName("imageUrl")
+    @SerializedName("urlToImage")
     val imageUrl: String?
-
 ) : Serializable

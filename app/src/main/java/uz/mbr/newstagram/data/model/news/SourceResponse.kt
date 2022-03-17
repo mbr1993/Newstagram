@@ -1,4 +1,4 @@
-package uz.mbr.newstagram.data.model
+package uz.mbr.newstagram.data.model.news
 
 import com.google.gson.annotations.SerializedName
 import java.io.Serializable
@@ -10,5 +10,4 @@ data class SourceResponse(
 
     @SerializedName("name")
     val name: String
-
-) : Serializable
+): Serializable

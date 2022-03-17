@@ -1,11 +1,12 @@
 package uz.mbr.newstagram.data.source
 
+import uz.mbr.newstagram.data.model.news.ArticleListResponse
 import retrofit2.Call
 import retrofit2.http.GET
 import retrofit2.http.Query
-import uz.mbr.newstagram.data.model.ArticleListResponse
 
 interface ArticleRestService {
+
     @GET("$API_TOP_HEADINGS$API_API_KEY")
     fun getArticles(
         @Query(FIELD_COUNTRY) country: String = "us"
@@ -26,10 +27,13 @@ interface ArticleRestService {
 
     private companion object {
         const val API_TOP_HEADINGS: String = "top-headlines"
-        const val API_API_KEY: String = "?country=us&apiKey=f64e5b340d954f85bdec4e8ad49e15fc"
+
+        const val API_API_KEY: String = "?country=us&apiKey=8eca259240354cd1b70a02b5f7185c62"
 
         const val FIELD_COUNTRY: String = "country"
         const val FIELD_CATEGORY: String = "category"
-        const val FIELD_SORT: String = "country"
+        const val FIELD_QUERY: String = "q"
+        const val FIELD_SORT: String = "sortBy"
+        const val FIELD_SOURCE: String = "sources"
     }
 }
