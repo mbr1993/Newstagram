@@ -9,7 +9,8 @@
         <item name="colorSecondary">#A84B4B</item>
         <item name="colorSecondaryVariant">#C5B52A</item>
         <item name="colorOnSecondary">@color/black</item>
-
+        <item name="android:textColorHint">#9A9BA1</item>
+        <item name="windowActionBar">false</item>
         <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
 
     </style>
@@ -34,6 +35,7 @@
         <item name="roundBottomLeft">true</item>
         <item name="roundBottomRight">true</item>
         <item name="roundTopLeft">true</item>
+        <item name="android:textColorHint">@color/white</item>
         <item name="roundTopRight">true</item>
         <item name="roundedCornerRadius">8dp</item>
     </style>

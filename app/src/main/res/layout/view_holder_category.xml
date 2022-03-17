@@ -6,7 +6,7 @@
     android:layout_marginHorizontal="8dp"
     android:background="@drawable/shape_category_background"
     android:paddingHorizontal="8dp"
-    android:paddingVertical="12dp"
+    android:paddingVertical="8dp"
     android:textColor="@color/color_category_text_color"
     android:textSize="18sp"
     tools:layout_margin="8dp"

@@ -16,10 +16,9 @@ import uz.mbr.newstagram.data.model.news.SourceResponse
 import uz.mbr.newstagram.data.source.ArticleRestService
 import uz.mbr.newstagram.databinding.ActivityNewsListBinding
 import uz.mbr.newstagram.ui.news.detail.NewsDetailActivity
-import uz.mbr.newstagram.ui.news.list.adapter.CategoryAdapter
+import uz.mbr.newstagram.ui.news.list.adapter.CategoryAdapterB
 import uz.mbr.newstagram.ui.news.list.adapter.NewsAdapter
 import uz.mbr.newstagram.ui.news.pager.NewsPagerActivity
-import java.util.ArrayList
 
 class NewsListActivity : AppCompatActivity() {
 
@@ -34,7 +33,7 @@ class NewsListActivity : AppCompatActivity() {
         newsOnClick = { openNewsDetail(it) },
         imageOnClick = { openNewsPager(it) }
     )
-    private val categoryAdapter = CategoryAdapter { }
+    private val categoryAdapter = CategoryAdapterB { }
 
     private val binding by lazy { ActivityNewsListBinding.inflate(layoutInflater) }
 
