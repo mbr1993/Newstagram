@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager.HORIZONTAL
 import androidx.recyclerview.widget.LinearLayoutManager.VERTICAL
+import kotlinx.android.synthetic.main.activity_news_list.*
 import retrofit2.*
 import retrofit2.converter.gson.GsonConverterFactory
 import timber.log.Timber
@@ -33,6 +34,7 @@ class NewsListActivity : AppCompatActivity() {
         newsOnClick = { openNewsDetail(it) },
         imageOnClick = { openNewsPager(it) }
     )
+
     private val categoryAdapter = CategoryAdapterB { }
 
     private val binding by lazy { ActivityNewsListBinding.inflate(layoutInflater) }
@@ -73,7 +75,7 @@ class NewsListActivity : AppCompatActivity() {
                 Timber.d(response.toString())
 
                 val articles = response.body()?.articles ?: listOf()
-                val categories: List<SourceResponse> = articles.map { it.source }.filterNotNull()
+                val categories: List<SourceResponse> = articles.mapNotNull { it.source }
                 categoryAdapter.setData(categories)
                 newsAdapter.setData(articles)
             }

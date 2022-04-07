@@ -6,7 +6,7 @@
     android:layout_height="wrap_content"
     android:layout_marginHorizontal="8dp"
     android:layout_marginVertical="8dp"
-    tools:background="#1B1D25"
+    tools:background="@color/color_primary"
     tools:padding="16dp">
 
     <com.facebook.drawee.view.SimpleDraweeView

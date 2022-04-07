@@ -42,7 +42,7 @@ class NewsDetailActivity : AppCompatActivity() {
         super.onDestroy()
     }
 
-    fun setFullScreenFlags() {
+    private fun setFullScreenFlags() {
         window.apply {
             clearFlags(WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS)
             setFlags(
@@ -52,7 +52,7 @@ class NewsDetailActivity : AppCompatActivity() {
         }
     }
 
-    fun clearFullScreenFlags() {
+    private fun clearFullScreenFlags() {
         window.apply {
             clearFlags(WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS)
         }

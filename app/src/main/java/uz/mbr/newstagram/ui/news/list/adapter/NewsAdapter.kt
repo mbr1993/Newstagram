@@ -4,6 +4,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import uz.mbr.newstagram.data.model.news.ArticleResponse
+import uz.mbr.newstagram.data.model.news.SourceResponse
 import uz.mbr.newstagram.databinding.ViewHolderBigNewsBinding
 import uz.mbr.newstagram.databinding.ViewHolderSmallNewsBinding
 
@@ -14,6 +15,7 @@ class NewsAdapter(
 
     var items: MutableList<ArticleResponse> = mutableListOf()
         private set
+    private var firstNewsSource: SourceResponse? = null
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         return when (viewType) {
@@ -37,7 +39,9 @@ class NewsAdapter(
             }
             else -> throw UnsupportedOperationException("Unknown view type $viewType")
         }
+
     }
+
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
         when (holder) {
@@ -47,7 +51,9 @@ class NewsAdapter(
     }
 
     override fun getItemViewType(position: Int): Int {
-        return if (position == 0) VIEW_TYPE_BIG_NEWS else VIEW_TYPE_SMALL_NEWS
+        return if (items[position].source ==
+            firstNewsSource
+        ) VIEW_TYPE_BIG_NEWS else VIEW_TYPE_SMALL_NEWS
     }
 
     override fun getItemCount(): Int {
@@ -55,6 +61,9 @@ class NewsAdapter(
     }
 
     fun setData(newItems: List<ArticleResponse>) {
+        if (newItems.isNotEmpty()) {
+            firstNewsSource = newItems[0].source
+        }
         items.clear()
         items.addAll(newItems)
         notifyDataSetChanged()
